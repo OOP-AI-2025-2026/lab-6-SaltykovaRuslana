@@ -118,19 +118,33 @@ public class SortingList extends Application {
         // Обробка натискання кнопки за допомогою об'єкта анонімного класу,
         // реалізує інтерфейс Comparable
 
-        final boolean[] order = {true};
+        final boolean[] nameOrder = {true};
+        final boolean[] surnameOrder = {true};
+        final boolean[] markOrder = {true};
 
         sortByNameButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                students.sort(new NameSorter(order[0]));
-                order[0] = !order[0];
+                students.sort(new NameSorter(nameOrder[0]));
+                nameOrder[0] = !nameOrder[0];
             }
         });
 
-        // TODO: Обробка натискання на кнопку "Сортувати за прізвищем"
+        sortByLastNameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                students.sort(new SurnameSorter(surnameOrder[0]));
+                surnameOrder[0] = !surnameOrder[0];
+            }
+        });
 
-        // TODO: Обробка натискання на кнопку "Сортувати за оцінкою"
+        sortByMarkButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                students.sort(new AvgGradeSorter(markOrder[0]));
+                markOrder[0] = !markOrder[0];
+            }
+        });
 
         // Створюємо горизонтальний ряд
         HBox hb = new HBox();
